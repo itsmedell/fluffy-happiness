@@ -6,4 +6,14 @@ class EmployeeStorage {
   static Future<Box> openBox() async {
     return await Hive.openBox(boxName);
   }
-}"}
+
+  static Future<void> addEmployee(String key, dynamic value) async {
+    final box = await openBox();
+    await box.put(key, value);
+  }
+
+  static Future<List<dynamic>> getEmployees() async {
+    final box = await openBox();
+    return box.values.toList();
+  }
+}
