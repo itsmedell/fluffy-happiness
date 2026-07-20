@@ -10,11 +10,38 @@ class EmployeeScreen extends StatefulWidget {
 class _EmployeeScreenState extends State<EmployeeScreen> {
   final TextEditingController controller = TextEditingController();
 
+  void showAddEmployeeDialog() {
+    controller.clear();
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Tambah Karyawan"),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(hintText: "Nama karyawan"),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Batal")),
+          ElevatedButton(
+            onPressed: () async {
+              if (controller.text.trim().isEmpty) return;
+              Navigator.pop(context);
+            },
+            child: const Text("Simpan"),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Employee Management'),
+    return Scaffold(
+      body: const Center(child: Text('Employee Management')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: showAddEmployeeDialog,
+        child: const Icon(Icons.add),
       ),
     );
   }
