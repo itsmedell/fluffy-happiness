@@ -16,4 +16,14 @@ class EmployeeStorage {
     final box = await openBox();
     return box.values.toList();
   }
+
+  static Future<void> updateEmployee(String key, dynamic value) async {
+    final box = await openBox();
+    await box.put(key, value);
+  }
+
+  static Future<void> deleteEmployee(String key) async {
+    final box = await openBox();
+    await box.delete(key);
+  }
 }
