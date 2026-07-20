@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   runApp(const RivermouthApp());
@@ -16,11 +17,7 @@ class RivermouthApp extends StatelessWidget {
         colorSchemeSeed: Colors.teal,
         useMaterial3: true,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Rivermouth Scheduler'),
-        ),
-      ),
+      home: const LoginScreen(),
     );
   }
 }
